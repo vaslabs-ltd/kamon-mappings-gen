@@ -11,7 +11,7 @@ trait CommonSettings extends ScalaModule with ScalafmtModule {
   )
 }
 
-object core extends CommonSettings {
+object `kamon-config` extends CommonSettings {
   def mvnDeps = Seq(
     mvn"com.softwaremill.sttp.tapir::tapir-core:1.13.19"
   )
@@ -19,20 +19,20 @@ object core extends CommonSettings {
     def scalaTestVersion = "3.2.20"
 }
 
-object http4s extends CommonSettings {
-  def moduleDeps = Seq(core)
+object `kamon-config-http4s` extends CommonSettings {
+  def moduleDeps = Seq(`kamon-config`)
   object test extends ScalaTests, TestModule.ScalaTest:
     def scalaTestVersion = "3.2.20"
 }
 
-object `akka-http` extends CommonSettings {
-  def moduleDeps = Seq(core)
+object `kamon-config-akka-http` extends CommonSettings {
+  def moduleDeps = Seq(`kamon-config`)
   object test extends ScalaTests, TestModule.ScalaTest:
     def scalaTestVersion = "3.2.20"
 }
 
-object cli extends CommonSettings {
-  def moduleDeps = Seq(http4s, `akka-http`)
+object `kamon-config-cli` extends CommonSettings {
+  def moduleDeps = Seq(`kamon-config-http4s`, `kamon-config-akka-http`)
   def mvnDeps = Seq(
     mvn"com.lihaoyi::mainargs:0.7.8"
   )
