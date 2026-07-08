@@ -2,15 +2,26 @@ package build.http4k
 
 import mill.*
 import mill.scalalib.*
+import mill.scalalib.publish.*
 import mill.kotlinlib.*
 
-object `kamon-config-http4k` extends KotlinModule {
+object `kamon-config-http4k` extends KotlinModule with PublishModule {
   override def kotlinVersion = "2.4.0"
 
   override def mvnDeps = super.mvnDeps() ++ Seq(
     mvn"org.http4k:http4k-core:6.55.0.0",
     mvn"org.http4k:http4k-api-openapi:6.55.0.0",
     mvn"com.typesafe:config:1.4.3"
+  )
+
+  def publishVersion = "0.1.0"
+  def pomSettings = PomSettings(
+    description = "Kamon configuration generator for http4k",
+    organization = "io.vaslabs",
+    url = "https://github.com/vaslabs-ltd/kamon-tapir",
+    licenses = Seq(License.`Apache-2.0`),
+    versionControl = VersionControl.github("vaslabs-ltd", "kamon-tapir"),
+    developers = Seq(Developer("vaslabs-ltd", "Vaslabs Ltd", "https://github.com/vaslabs-ltd"))
   )
 
   object test extends KotlinTests with TestModule.Junit5 {
@@ -20,4 +31,3 @@ object `kamon-config-http4k` extends KotlinModule {
     )
   }
 }
-
