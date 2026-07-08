@@ -2,3 +2,5 @@ jdk:
   - openjdk17
 install:
   - ./mill __.publishM2Local
+test:
+  - ./mill __.test
