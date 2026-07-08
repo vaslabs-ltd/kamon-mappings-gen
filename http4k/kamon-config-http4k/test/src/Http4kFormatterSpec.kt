@@ -6,14 +6,13 @@ import org.http4k.core.Method
 import org.http4k.core.Response
 import org.http4k.core.Status
 import org.http4k.lens.Path
-import org.http4k.lens.string
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class Http4kFormatterSpec {
     @Test
     fun testFormatting() {
-        val route = "/books" / Path.string().of("bookId") bindContract Method.GET to { _ -> { Response(Status.OK) } }
+        val route = "/books" / Path.of("bookId") bindContract Method.GET to { _ -> { Response(Status.OK) } }
         val hocon = Http4kFormatter.format(listOf(route), backend = "http")
         
         assertTrue(hocon.contains("kamon.instrumentation.http"))

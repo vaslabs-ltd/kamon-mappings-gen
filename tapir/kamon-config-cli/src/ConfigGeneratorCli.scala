@@ -9,7 +9,7 @@ import io.vaslabs.kamon.tapir.ConfigGenerator
 import io.vaslabs.kamon.tapir.http4s.Http4sFormatter
 import io.vaslabs.kamon.tapir.akka.AkkaHttpFormatter
 
-object ConfigGeneratorApp:
+object ConfigGeneratorCli:
   @main
   def run(
       @arg(name = "endpoints-path", doc = "Fully qualified name(s) of the endpoints list, e.g. com.softwaremill.Endpoints.all")
