@@ -2,6 +2,7 @@ package com.example
 
 import com.example.formats.JacksonMessage
 import com.example.formats.jacksonMessageLens
+import io.vaslabs.kamon.tapir.http4k.KamonTracing
 import org.http4k.contract.bindContract
 import org.http4k.contract.contract
 import org.http4k.contract.div
@@ -36,28 +37,10 @@ val app: HttpHandler = contract {
     routes += allRoutes
 }
 
-// Server-side tracing filter from the Kamon Tracing API guidance
-val kamonServerTracing = Filter { next -> { request ->
-    val span = Kamon.spanBuilder(request.uri.path)
-        .tag("http.method", request.method.name)
-        .tag("http.url", request.uri.toString())
-        .start()
-
-    try {
-        Kamon.runWithContext(Kamon.currentContext().withEntry(Span.Key(), span)) {
-            next(request).apply {
-                span.tag("http.status_code", status.code.toString())
-            }
-        }
-    } finally {
-        span.finish()
-    }
-}}
-
 fun main() {
     Kamon.init()
 
-    val printingApp: HttpHandler = PrintRequest().then(kamonServerTracing.then(app))
+    val printingApp: HttpHandler = PrintRequest().then(KamonTracing.filter(allRoutes)).then(app)
 
     val server = printingApp.asServer(Netty(9000)).start()
 
