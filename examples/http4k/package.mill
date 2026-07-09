@@ -1,0 +1,59 @@
+package build.examples.http4k
+
+import mill.*
+import mill.scalalib.*
+import mill.kotlinlib.*
+
+object `app` extends KotlinModule {
+  override def kotlinVersion = "2.4.0"
+  override def jvmVersion = "21"
+
+  override def moduleDeps = Seq(build.http4k.`kamon-tracing-http4k`)
+
+  override def bomMvnDeps = Seq(
+    mvn"org.http4k:http4k-bom:6.55.0.0"
+  )
+
+  override def kotlincOptions = Task {
+    Seq("-jvm-target", jvmVersion())
+  }
+
+  override def mvnDeps = Seq(
+    mvn"org.http4k:http4k-config",
+    mvn"org.http4k:http4k-core",
+    mvn"org.http4k:http4k-format-jackson",
+    mvn"org.http4k:http4k-server-netty",
+    mvn"org.http4k:http4k-api-openapi",
+    mvn"io.kamon:kamon-bundle_3:2.8.1",
+    mvn"io.kamon:kamon-prometheus_3:2.8.1",
+    mvn"io.kamon:kanela-agent:2.0.0"
+  )
+
+  def kanelaAgentJar = Task {
+    runClasspath()
+      .map(_.path)
+      .find(_.last.contains("kanela-agent"))
+      .getOrElse(
+        Task.fail("Kanela agent JAR not found in classpath")
+      )
+  }
+
+  override def forkArgs = Task {
+    super.forkArgs() ++ Seq(
+      s"-javaagent:${kanelaAgentJar().toString}"
+    )
+  }
+
+  object test extends KotlinTests with TestModule.Junit5 {
+    override def jupiterVersion = "5.1.1"
+    override def jvmVersion = "21"
+
+    override def kotlincOptions = Task {
+      Seq("-jvm-target", jvmVersion())
+    }
+
+    override def mvnDeps = Seq(
+      mvn"org.http4k:http4k-testing-hamkrest"
+    )
+  }
+}
