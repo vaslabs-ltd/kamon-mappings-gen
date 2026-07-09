@@ -4,7 +4,7 @@ import mill.*
 import mill.scalalib.*
 import mill.kotlinlib.*
 
-object `http4k-lib` extends KotlinModule {
+object `app` extends KotlinModule {
   override def kotlinVersion = "2.4.0"
   override def jvmVersion = "21"
 
