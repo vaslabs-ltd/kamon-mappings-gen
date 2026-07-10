@@ -24,7 +24,8 @@ object `http4k-lib` extends KotlinModule {
     mvn"org.http4k:http4k-api-openapi",
     mvn"io.kamon:kamon-bundle_3:2.8.1",
     mvn"io.kamon:kamon-prometheus_3:2.8.1",
-    mvn"io.kamon:kanela-agent:2.0.0"
+    mvn"io.kamon:kanela-agent:2.0.0",
+    mvn"io.kamon:kamon-http4k_3:2.8.1+1-95eb208b"
   )
 
   def kanelaAgentJar = Task {

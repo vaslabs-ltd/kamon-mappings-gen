@@ -18,7 +18,7 @@ import org.http4k.lens.Path
 import org.http4k.server.Netty
 import org.http4k.server.asServer
 import kamon.Kamon
-import kamon.trace.Span
+import kamon.http4k.KamonFilter
 
 val pingRoute = "/ping" bindContract GET to { _: Request -> Response(OK).body("pong") }
 
@@ -36,28 +36,12 @@ val app: HttpHandler = contract {
     routes += allRoutes
 }
 
-// Server-side tracing filter from the Kamon Tracing API guidance
-val kamonServerTracing = Filter { next -> { request ->
-    val span = Kamon.spanBuilder(request.uri.path)
-        .tag("http.method", request.method.name)
-        .tag("http.url", request.uri.toString())
-        .start()
-
-    try {
-        Kamon.runWithContext(Kamon.currentContext().withEntry(Span.Key(), span)) {
-            next(request).apply {
-                span.tag("http.status_code", status.code.toString())
-            }
-        }
-    } finally {
-        span.finish()
-    }
-}}
-
 fun main() {
     Kamon.init()
 
-    val printingApp: HttpHandler = PrintRequest().then(kamonServerTracing.then(app))
+     val printingApp: HttpHandler = PrintRequest()
+        .then(KamonFilter.apply("0.0.0.0", 9000))
+        .then(app)
 
     val server = printingApp.asServer(Netty(9000)).start()
 
