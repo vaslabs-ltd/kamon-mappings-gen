@@ -8,6 +8,8 @@ object `http4k-lib` extends KotlinModule {
   override def kotlinVersion = "2.4.0"
   override def jvmVersion = "21"
 
+  def moduleDeps = Seq(build.http4k.`kamon-config-http4k`)
+
   override def bomMvnDeps = Seq(
     mvn"org.http4k:http4k-bom:6.55.0.0"
   )

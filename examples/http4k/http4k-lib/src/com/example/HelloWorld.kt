@@ -19,6 +19,7 @@ import org.http4k.server.Netty
 import org.http4k.server.asServer
 import kamon.Kamon
 import kamon.http4k.KamonFilter
+import io.vaslabs.kamon.tapir.http4k.Http4kConfigGenerator.loadConfig
 
 val pingRoute = "/ping" bindContract GET to { _: Request -> Response(OK).body("pong") }
 
@@ -37,7 +38,10 @@ val app: HttpHandler = contract {
 }
 
 fun main() {
-    Kamon.init()
+
+    val config = loadConfig(allRoutes)
+
+    Kamon.init(config)
 
      val printingApp: HttpHandler = PrintRequest()
         .then(KamonFilter.apply("0.0.0.0", 9000))

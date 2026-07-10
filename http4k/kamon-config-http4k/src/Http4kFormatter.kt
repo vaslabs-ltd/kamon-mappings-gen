@@ -3,7 +3,7 @@ package io.vaslabs.kamon.tapir.http4k
 import org.http4k.contract.ContractRoute
 
 object Http4kFormatter {
-    fun format(routes: List<ContractRoute>, backend: String = "http"): String {
+    fun format(routes: List<ContractRoute>): String {
         val indent = 10
         val mappings = Http4kConfigGenerator.extractMappings(routes)
         val indentPrefix = " ".repeat(indent)
@@ -11,7 +11,7 @@ object Http4kFormatter {
             "$indentPrefix\"$matching\" = \"$template\""
         }
         return """
-            |kamon.instrumentation.$backend {
+            |kamon.instrumentation.http4k {
             |  server {
             |    tracing {
             |      operations {
