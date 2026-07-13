@@ -46,14 +46,14 @@ trait TapirApp extends SbtModule {
 
 object `tapir-lib` extends TapirApp {
   override def mvnDeps = super.mvnDeps() ++ Seq(
-    mvn"com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir_3:main-SNAPSHOT"
+    mvn"com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir_3:main-6350d00ca7-1"
   )
 
 }
 
 object `tapir-cli` extends TapirApp {
   override def mvnDeps = super.mvnDeps() ++ Seq(
-    mvn"com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir-cli_3:main-SNAPSHOT"
+    mvn"com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir-cli_3:main-6350d00ca7-1"
   )
 
   def generateKamonConfig = Task {

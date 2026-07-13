@@ -1,5 +1,7 @@
 # kamon-mappings-gen
 
+[![Release](https://jitpack.io/v/vaslabs-ltd/kamon-mappings-gen.svg)](https://jitpack.io/#vaslabs-ltd/kamon-mappings-gen)
+
 kamon-mappings-gen is a modular library that automatically generates Kamon HTTP instrumentation operation mappings from framework endpoint definitions.
 
 It keeps metrics manageable by turning dynamic URLs into stable route patterns that Kamon can group together.
