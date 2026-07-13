@@ -1,4 +1,4 @@
-package io.vaslabs.kamon.mappings.http4k.cli
+package org.vaslabs.kamon.mappings.http4k.cli
 
 import com.github.ajalt.clikt.core.main
 import org.http4k.contract.bindContract
@@ -32,7 +32,7 @@ class Http4kCliSpec {
         tempFile.deleteOnExit()
 
         Http4kCli().main(arrayOf(
-            "--class", "io.vaslabs.kamon.mappings.http4k.cli.Http4kCliSpec\$RoutesObject",
+            "--class", "org.vaslabs.kamon.mappings.http4k.cli.Http4kCliSpec\$RoutesObject",
             "--field", "routes",
             "--output", tempFile.absolutePath
         ))
@@ -61,8 +61,8 @@ class Http4kCliSpec {
         tempFile.deleteOnExit()
 
         Http4kCli().main(arrayOf(
-            "--class", "io.vaslabs.kamon.mappings.http4k.cli.Http4kCliSpec\$RoutesObject",
-            "--class", "io.vaslabs.kamon.mappings.http4k.cli.Http4kCliSpec\$RoutesObject2",
+            "--class", "org.vaslabs.kamon.mappings.http4k.cli.Http4kCliSpec\$RoutesObject",
+            "--class", "org.vaslabs.kamon.mappings.http4k.cli.Http4kCliSpec\$RoutesObject2",
             "--field", "routes",
             "--output", tempFile.absolutePath
         ))

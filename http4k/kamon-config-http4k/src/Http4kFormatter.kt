@@ -1,4 +1,4 @@
-package io.vaslabs.kamon.mappings.http4k
+package org.vaslabs.kamon.mappings.http4k
 
 import org.http4k.contract.ContractRoute
 

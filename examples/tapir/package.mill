@@ -60,7 +60,7 @@ object `tapir-cli` extends TapirApp {
     val dest = Task.dest / "reference.conf"
     val cp = Seq(compile().classes.path) ++ compileClasspath().map(_.path)
     mill.util.Jvm.callProcess(
-      mainClass = "io.vaslabs.kamon.mappings.tapir.cli.ConfigGeneratorCli",
+      mainClass = "org.vaslabs.kamon.mappings.tapir.cli.ConfigGeneratorCli",
       classPath = cp,
       mainArgs = Seq("--endpoints-path", "com.softwaremill.Endpoints.all", "--output-path", dest.toString),
       cwd = Task.dest

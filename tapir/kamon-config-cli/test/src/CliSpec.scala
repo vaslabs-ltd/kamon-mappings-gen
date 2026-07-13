@@ -1,4 +1,4 @@
-package io.vaslabs.kamon.mappings.tapir.cli
+package org.vaslabs.kamon.mappings.tapir.cli
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
@@ -27,7 +27,7 @@ class CliSpec extends AnyFlatSpec with Matchers {
     ConfigGeneratorCli.main(
       Array(
         "--endpoints-path",
-        "io.vaslabs.kamon.mappings.tapir.cli.TestEndpoints.all",
+        "org.vaslabs.kamon.mappings.tapir.cli.TestEndpoints.all",
         "--output-path",
         tempFile.getAbsolutePath,
         "--backend",
@@ -58,9 +58,9 @@ class CliSpec extends AnyFlatSpec with Matchers {
     ConfigGeneratorCli.main(
       Array(
         "--endpoints-path",
-        "io.vaslabs.kamon.mappings.tapir.cli.TestEndpoints.all",
+        "org.vaslabs.kamon.mappings.tapir.cli.TestEndpoints.all",
         "--endpoints-path",
-        "io.vaslabs.kamon.mappings.tapir.cli.TestEndpoints2.all",
+        "org.vaslabs.kamon.mappings.tapir.cli.TestEndpoints2.all",
         "--output-path",
         tempFile.getAbsolutePath,
         "--backend",

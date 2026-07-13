@@ -1,13 +1,13 @@
-package io.vaslabs.kamon.mappings.tapir.cli
+package org.vaslabs.kamon.mappings.tapir.cli
 
 import java.nio.file.{Files, Paths}
 import java.nio.charset.StandardCharsets
 import mainargs.{main, arg, ParserForMethods}
 import sttp.tapir.AnyEndpoint
 import sttp.tapir.server.ServerEndpoint
-import io.vaslabs.kamon.mappings.tapir.ConfigGenerator
-import io.vaslabs.kamon.mappings.tapir.http4s.Http4sFormatter
-import io.vaslabs.kamon.mappings.tapir.akka.AkkaHttpFormatter
+import org.vaslabs.kamon.mappings.tapir.ConfigGenerator
+import org.vaslabs.kamon.mappings.tapir.http4s.Http4sFormatter
+import org.vaslabs.kamon.mappings.tapir.akka.AkkaHttpFormatter
 
 object ConfigGeneratorCli:
   @main

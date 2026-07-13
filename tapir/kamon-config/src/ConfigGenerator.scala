@@ -1,4 +1,4 @@
-package io.vaslabs.kamon.mappings.tapir
+package org.vaslabs.kamon.mappings.tapir
 
 import sttp.tapir.*
 import sttp.tapir.internal.RichEndpointInput

@@ -1,4 +1,4 @@
-package io.vaslabs.kamon.mappings.tapir
+package org.vaslabs.kamon.mappings.tapir
 
 import com.typesafe.config.{Config, ConfigFactory}
 import sttp.tapir.AnyEndpoint

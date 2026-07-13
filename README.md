@@ -42,7 +42,7 @@ com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir_3:VERSION
 Segment of the `tapir-lib` example in [`examples/tapir/tapir-lib`](examples/tapir/tapir-lib):
 
 ```scala
-import io.vaslabs.kamon.mappings.tapir.http4s.Http4sFormatter
+import org.vaslabs.kamon.mappings.tapir.http4s.Http4sFormatter
 import cats.effect.{ExitCode, IO, IOApp}
 
 object Main extends IOApp:
@@ -80,7 +80,7 @@ def generateKamonConfig = Task {
   val dest = Task.dest / "reference.conf"
   val cp = Seq(compile().classes.path) ++ compileClasspath().map(_.path)
   mill.util.Jvm.callProcess(
-    mainClass = "io.vaslabs.kamon.mappings.tapir.cli.ConfigGeneratorCli",
+    mainClass = "org.vaslabs.kamon.mappings.tapir.cli.ConfigGeneratorCli",
     classPath = cp,
     mainArgs = Seq(
       "--endpoints-path", "com.mycompany.Endpoints.all", 

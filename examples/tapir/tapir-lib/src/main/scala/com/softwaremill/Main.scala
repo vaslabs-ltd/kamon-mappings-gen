@@ -2,7 +2,7 @@ package com.softwaremill
 
 import cats.effect.{ExitCode, IO, IOApp}
 import com.comcast.ip4s.{Host, Port, port}
-import io.vaslabs.kamon.mappings.tapir.http4s.Http4sFormatter
+import org.vaslabs.kamon.mappings.tapir.http4s.Http4sFormatter
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.Router
 import sttp.tapir.server.http4s.Http4sServerInterpreter

@@ -10,7 +10,7 @@ trait CommonSettings extends KotlinModule with PublishModule {
   def publishVersion = "0.1.0"
   def pomSettings = PomSettings(
     description = "Kamon configuration generator for http4k",
-    organization = "io.vaslabs",
+    organization = "org.vaslabs",
     url = "https://github.com/vaslabs-ltd/kamon-mappings-gen",
     licenses = Seq(License.`Apache-2.0`),
     versionControl = VersionControl.github("vaslabs-ltd", "kamon-mappings-gen"),
