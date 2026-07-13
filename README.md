@@ -9,13 +9,13 @@ For example, requests like `/books/123/reviews/456` and `/books/987/reviews/654`
 
 **Tapir (Scala)**
 
-*   **kamon-config**: Core library for generating Kamon mappings from Tapir endpoints.
-*   **kamon-config-cli**: CLI for build-time generation of Tapir-based Kamon mappings.
+*   **kamon-mappings-tapir**: Core library for generating Kamon mappings from Tapir endpoints.
+*   **kamon-mappings-tapir-cli**: CLI for build-time generation of Tapir-based Kamon mappings.
 
 **http4k (Kotlin)**
 
-*   **kamon-config-http4k**: Core library for generating Kamon mappings from http4k endpoints.
-*   **kamon-config-http4k-cli**: CLI for build-time generation of http4k-based Kamon mappings.
+*   **kamon-mappings-http4k**: Core library for generating Kamon mappings from http4k endpoints.
+*   **kamon-mappings-http4k-cli**: CLI for build-time generation of http4k-based Kamon mappings.
 
 ## Usage
 
@@ -32,7 +32,7 @@ This approach generates and merges telemetry mappings directly during applicatio
 ##### Dependency:
 
 ```
-com.github.vaslabs-ltd.kamon-mappings-gen:tapir-kamon-config_3:VERSION
+com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir_3:VERSION
 ```
 
 ###### Initialize Kamon in your application startup code:
@@ -66,7 +66,7 @@ This approach runs the generator at compile time and packages the output `refere
 ##### Dependency:
 
 ```
-com.github.vaslabs-ltd.kamon-mappings-gen:tapir-kamon-config-cli_3:VERSION
+com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir-cli_3:VERSION
 ```
 
 

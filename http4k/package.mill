@@ -19,6 +19,7 @@ trait CommonSettings extends KotlinModule with PublishModule {
 }
 
 object `kamon-config-http4k` extends CommonSettings {
+  override def artifactName = "kamon-mappings-http4k"
   override def mvnDeps = super.mvnDeps() ++ Seq(
     mvn"org.http4k:http4k-api-openapi:6.55.0.0",
     mvn"com.typesafe:config:1.4.3"
@@ -30,6 +31,7 @@ object `kamon-config-http4k` extends CommonSettings {
 }
 
 object `kamon-config-http4k-cli` extends CommonSettings {
+  override def artifactName = "kamon-mappings-http4k-cli"
   def moduleDeps = Seq(`kamon-config-http4k`)
 
   override def mvnDeps = super.mvnDeps() ++ Seq(
