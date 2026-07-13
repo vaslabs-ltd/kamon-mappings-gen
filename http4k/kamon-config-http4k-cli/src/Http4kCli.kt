@@ -1,4 +1,4 @@
-package io.vaslabs.kamon.tapir.http4k.cli
+package io.vaslabs.kamon.mappings.http4k.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.Context
@@ -7,7 +7,7 @@ import com.github.ajalt.clikt.core.main
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.multiple
 import com.github.ajalt.clikt.parameters.options.option
-import io.vaslabs.kamon.tapir.http4k.Http4kFormatter
+import io.vaslabs.kamon.mappings.http4k.Http4kFormatter
 import org.http4k.contract.ContractRoute
 import java.io.File
 

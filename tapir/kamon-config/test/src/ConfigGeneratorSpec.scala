@@ -1,4 +1,4 @@
-package io.vaslabs.kamon.tapir
+package io.vaslabs.kamon.mappings.tapir
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers

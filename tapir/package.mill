@@ -14,9 +14,9 @@ trait CommonSettings extends ScalaModule with ScalafmtModule with PublishModule 
   def pomSettings = PomSettings(
     description = "Kamon configuration generator for Tapir",
     organization = "io.vaslabs",
-    url = "https://github.com/vaslabs-ltd/kamon-tapir",
+    url = "https://github.com/vaslabs-ltd/kamon-mappings-gen",
     licenses = Seq(License.`Apache-2.0`),
-    versionControl = VersionControl.github("vaslabs-ltd", "kamon-tapir"),
+    versionControl = VersionControl.github("vaslabs-ltd", "kamon-mappings-gen"),
     developers = Seq(Developer("vaslabs-ltd", "Vaslabs Ltd", "https://github.com/vaslabs-ltd"))
   )
 }
