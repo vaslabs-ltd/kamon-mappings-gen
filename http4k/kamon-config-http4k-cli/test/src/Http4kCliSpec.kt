@@ -39,7 +39,7 @@ class Http4kCliSpec {
 
         val hocon = tempFile.readText()
         val expected = """
-            |kamon.instrumentation.http {
+            |kamon.instrumentation.http4k {
             |  server {
             |    tracing {
             |      operations {
@@ -69,7 +69,7 @@ class Http4kCliSpec {
 
         val hocon = tempFile.readText()
         val expected = """
-            |kamon.instrumentation.http {
+            |kamon.instrumentation.http4k {
             |  server {
             |    tracing {
             |      operations {

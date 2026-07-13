@@ -1,5 +1,7 @@
 package io.vaslabs.kamon.mappings.http4k
 
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 import org.http4k.contract.ContractRoute
 import org.http4k.contract.Root
 
@@ -13,4 +15,9 @@ object Http4kConfigGenerator {
             val templatePattern = template.replace(PATH_PARAM_REGEX, ":$1")
             matchPattern to templatePattern
         }
+
+    fun loadConfig(routes: List<ContractRoute>): Config {
+        val hoconString = Http4kFormatter.format(routes)
+        return ConfigFactory.parseString(hoconString).withFallback(ConfigFactory.load())
+    }
 }

@@ -13,9 +13,9 @@ class Http4kFormatterSpec {
     @Test
     fun testFormatting() {
         val route = "/books" / Path.of("bookId") bindContract Method.GET to { _ -> { Response(Status.OK) } }
-        val hocon = Http4kFormatter.format(listOf(route), backend = "http")
+        val hocon = Http4kFormatter.format(listOf(route))
         
-        assertTrue(hocon.contains("kamon.instrumentation.http"))
+        assertTrue(hocon.contains("kamon.instrumentation.http4k"))
         val expectedMappingLine = "\"/books/*\" = \"/books/:bookId\""
         assertTrue(hocon.contains(expectedMappingLine))
     }

@@ -16,7 +16,6 @@ class Http4kCli : CliktCommand(name = "kamon-config-http4k-cli") {
 
     val classNames by option("-c", "--class", help = "Fully qualified class/object name containing the routes").multiple()
     val fieldName by option("-f", "--field", help = "Name of the field or method containing/returning the List<ContractRoute>").default("routes")
-    val backend by option("-b", "--backend", help = "The target Kamon instrumentation backend (e.g. netty, undertow, jetty)").default("http")
     val output by option("-o", "--output", help = "Path to the output file to write the config to (defaults to stdout)")
     override fun run() {
         if (classNames.isEmpty()) {
@@ -56,7 +55,7 @@ class Http4kCli : CliktCommand(name = "kamon-config-http4k-cli") {
             allRoutes.addAll(routes)
         }
 
-        val hocon = Http4kFormatter.format(allRoutes, backend)
+        val hocon = Http4kFormatter.format(allRoutes)
 
         val outputPath = output
         if (outputPath != null) {
