@@ -1,7 +1,5 @@
 # kamon-mappings-gen
 
-[![Release](https://jitpack.io/v/vaslabs-ltd/kamon-mappings-gen.svg)](https://jitpack.io/#vaslabs-ltd/kamon-mappings-gen)
-
 kamon-mappings-gen is a modular library that automatically generates Kamon HTTP instrumentation operation mappings from framework endpoint definitions.
 
 It keeps metrics manageable by turning dynamic URLs into stable route patterns that Kamon can group together.
@@ -23,8 +21,6 @@ For example, requests like `/books/123/reviews/456` and `/books/987/reviews/654`
 
 There are two approaches to integrate endpoint mappings into your application.
 
-Before using any module, add [JitPack](https://jitpack.io/) to your repositories.
-
 ### Option A: Dynamic Runtime Loading (Recommended)
 
 This approach generates and merges telemetry mappings directly during application startup.
@@ -32,7 +28,7 @@ This approach generates and merges telemetry mappings directly during applicatio
 #### Tapir
 
 ##### Dependency:
-
+TODO: Update
 ```
 com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir_3:VERSION
 ```
@@ -66,7 +62,7 @@ This approach runs the generator at compile time and packages the output `refere
 #### Tapir
 
 ##### Dependency:
-
+TODO: Update
 ```
 com.github.vaslabs-ltd.kamon-mappings-gen:kamon-mappings-tapir-cli_3:VERSION
 ```
