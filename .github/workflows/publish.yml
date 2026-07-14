@@ -9,6 +9,7 @@ on:
 jobs:
   publish-artifacts:
     runs-on: ubuntu-latest
+    environment: maven-central
     steps:
       - uses: actions/checkout@v7
         with: { fetch-depth: 1 }
