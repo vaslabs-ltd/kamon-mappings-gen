@@ -50,7 +50,6 @@ object `tapir-cli` extends TapirApp {
   // TODO: Use published version when available
   def moduleDeps = Seq(build.tapir.`kamon-config-cli`("3.8.4"))
 
-
   def generateKamonConfig = Task {
     val dest = Task.dest / "reference.conf"
     val cp = Seq(compile().classes.path) ++ compileClasspath().map(_.path)

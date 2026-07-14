@@ -50,8 +50,8 @@ object ConfigGeneratorCli {
           // Pass List to satisfy F[_] of ServerEndpoint[R, F[_]].
           // On runtime, this will match any ServerEndpoint due to type erasure
           case se: ServerEndpoint[_, List @unchecked] => Some(se.endpoint)
-          case e: AnyEndpoint              => Some(e)
-          case other                       =>
+          case e: AnyEndpoint                         => Some(e)
+          case other                                  =>
             System.err.println(s"Warning: Ignored unknown element in list: $other")
             None
         }
