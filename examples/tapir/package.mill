@@ -42,13 +42,13 @@ trait TapirApp extends SbtModule {
 
 object `tapir-lib` extends TapirApp {
   // TODO: Use published version when available
-  def moduleDeps = Seq(build.tapir.`kamon-config`)
+  def moduleDeps = Seq(build.tapir.`kamon-config`("3.8.4"))
 
 }
 
 object `tapir-cli` extends TapirApp {
   // TODO: Use published version when available
-  def moduleDeps = Seq(build.tapir.`kamon-config-cli`)
+  def moduleDeps = Seq(build.tapir.`kamon-config-cli`("3.8.4"))
 
 
   def generateKamonConfig = Task {

@@ -1,9 +1,9 @@
 package org.vaslabs.kamon.mappings.tapir
 
-import sttp.tapir.*
+import sttp.tapir._
 import sttp.tapir.internal.RichEndpointInput
 
-object ConfigGenerator:
+object ConfigGenerator {
 
   /** Extracts raw mapping pairs (Match Pattern, Template Pattern) from endpoints. E.g., ("/books/wildcard", "/books/:bookId")
     * @param endpoints
@@ -16,25 +16,28 @@ object ConfigGenerator:
       val basicInputs = endpoint.input.asVectorOfBasicInputs(true)
 
       val pathInputs = basicInputs.collect {
-        case p: EndpointInput.FixedPath[?]   => p
-        case c: EndpointInput.PathCapture[?] => c
+        case p: EndpointInput.FixedPath[t]   => p
+        case c: EndpointInput.PathCapture[t] => c
       }
 
-      val hasCaptures = pathInputs.exists(_.isInstanceOf[EndpointInput.PathCapture[?]])
+      val hasCaptures = pathInputs.exists {
+        case _: EndpointInput.PathCapture[t] => true
+        case _                               => false
+      }
 
       if (hasCaptures) {
         val key = pathInputs
           .map {
-            case p: EndpointInput.FixedPath[?]   => p.s
-            case _: EndpointInput.PathCapture[?] => "*"
+            case p: EndpointInput.FixedPath[t]   => p.s
+            case _: EndpointInput.PathCapture[t] => "*"
             case _                               => "" // suppress compiler warning
           }
           .mkString("/", "/", "")
 
         val value = pathInputs
           .map {
-            case p: EndpointInput.FixedPath[?]   => p.s
-            case c: EndpointInput.PathCapture[?] => s":${c.name.getOrElse("param")}"
+            case p: EndpointInput.FixedPath[t]   => p.s
+            case c: EndpointInput.PathCapture[t] => s":${c.name.getOrElse("param")}"
             case _                               => "" // suppress compiler warning
           }
           .mkString("/", "/", "")
@@ -53,7 +56,7 @@ object ConfigGenerator:
     * @return
     *   A string containing the formatted HOCON configuration for the specified backend instrumentation.
     */
-  def formatHocon(mappings: Seq[(String, String)], backendKey: String): String =
+  def formatHocon(mappings: Seq[(String, String)], backendKey: String): String = {
     val indentSize = 10
     val mappingsBlock = mappings.distinct
       .map { case (key, value) =>
@@ -72,3 +75,5 @@ object ConfigGenerator:
        |    }
        |  }
        |}""".stripMargin
+  }
+}

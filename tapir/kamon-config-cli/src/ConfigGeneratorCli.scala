@@ -9,7 +9,7 @@ import org.vaslabs.kamon.mappings.tapir.ConfigGenerator
 import org.vaslabs.kamon.mappings.tapir.http4s.Http4sFormatter
 import org.vaslabs.kamon.mappings.tapir.akka.AkkaHttpFormatter
 
-object ConfigGeneratorCli:
+object ConfigGeneratorCli {
   @main
   def run(
       @arg(name = "endpoints-path", doc = "Fully qualified name(s) of the endpoints list, e.g. com.softwaremill.Endpoints.all")
@@ -18,7 +18,7 @@ object ConfigGeneratorCli:
       outputPath: String,
       @arg(name = "backend", doc = "Target Kamon instrumentation backend (e.g. http4s, akka-http)")
       backend: String = "http4s"
-  ): Unit =
+  ): Unit = {
     val path = Paths.get(outputPath)
 
     try {
@@ -42,14 +42,16 @@ object ConfigGeneratorCli:
         }
 
         val rawSeq = instance.getClass.getMethod(memberName).invoke(instance) match {
-          case seq: Seq[?] => seq
+          case seq: Seq[_] => seq
           case _           => throw new IllegalArgumentException(s"$endpointsPath did not return a Seq of endpoints.")
         }
 
         rawSeq.flatMap {
-          case se: ServerEndpoint[?, ?] => Some(se.endpoint)
-          case e: AnyEndpoint           => Some(e)
-          case other                    =>
+          // Pass List to satisfy F[_] of ServerEndpoint[R, F[_]].
+          // On runtime, this will match any ServerEndpoint due to type erasure
+          case se: ServerEndpoint[_, List @unchecked] => Some(se.endpoint)
+          case e: AnyEndpoint              => Some(e)
+          case other                       =>
             System.err.println(s"Warning: Ignored unknown element in list: $other")
             None
         }
@@ -72,6 +74,9 @@ object ConfigGeneratorCli:
         e.printStackTrace()
         System.exit(1)
     }
+  }
 
-  def main(args: Array[String]): Unit =
+  def main(args: Array[String]): Unit = {
     ParserForMethods(this).runOrExit(args.toIndexedSeq)
+  }
+}

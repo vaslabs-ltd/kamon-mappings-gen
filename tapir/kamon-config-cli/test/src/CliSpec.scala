@@ -4,7 +4,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import java.io.File
 import java.nio.file.Files
-import sttp.tapir.*
+import sttp.tapir._
 
 object TestEndpoints {
   val all: Seq[AnyEndpoint] = Seq(

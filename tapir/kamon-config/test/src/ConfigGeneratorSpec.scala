@@ -2,9 +2,9 @@ package org.vaslabs.kamon.mappings.tapir
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import sttp.tapir.*
+import sttp.tapir._
 
-class ConfigGeneratorSpec extends AnyFlatSpec with Matchers:
+class ConfigGeneratorSpec extends AnyFlatSpec with Matchers {
 
   it should "extract empty mappings when no endpoints have path variables" in {
     val ep = endpoint.get.in("hello" / "world")
@@ -24,3 +24,4 @@ class ConfigGeneratorSpec extends AnyFlatSpec with Matchers:
       "/users/*/posts/*" -> "/users/:userId/posts/:postId"
     )
   }
+}

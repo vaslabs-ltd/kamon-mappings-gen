@@ -7,7 +7,7 @@ import mill.kotlinlib.*
 
 trait CommonSettings extends KotlinModule with PublishModule {
   override def kotlinVersion = "2.4.0"
-  def publishVersion = "0.1.0"
+  def publishVersion = build.projectVersion
   def pomSettings = PomSettings(
     description = "Kamon configuration generator for http4k",
     organization = "org.vaslabs",
