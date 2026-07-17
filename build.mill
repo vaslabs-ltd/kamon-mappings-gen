@@ -1,3 +1,9 @@
+//| mvnDeps: ["com.lihaoyi::mill-contrib-versionfile:$MILL_VERSION"]
 package build
 
-val projectVersion = "0.2.0"
+import mill.*
+import mill.contrib.versionfile.VersionFileModule
+
+object versionFile extends VersionFileModule
+
+def projectVersion = Task { versionFile.currentVersion().toString }
